@@ -1,0 +1,22 @@
+{
+  "name": "libretro-database-goodwsx",
+  "version": "0.3.27",
+  "description": "GoodWSx spliter for libretro-database",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobLoach/libretro-database-goodwsx.git"
+  },
+  "author": "Rob Loach",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RobLoach/libretro-database-goodwsx/issues"
+  },
+  "homepage": "https://github.com/RobLoach/libretro-database-goodwsx#readme",
+  "dependencies": {
+    "robloach-datfile": "^2.0.0"
+  }
+}
