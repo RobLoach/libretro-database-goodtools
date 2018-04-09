@@ -11,11 +11,45 @@ function renderHeader(name = 'WonderSwan', vendor = 'Bandai') {
 )\n`
 }
 
+function cleanName(title) {
+	let output = title.trim()
+
+	// Remove GoodTools flags
+	// http://emulation.gametechwiki.com/index.php/GoodTools
+	output = output.replace('[!]', '')
+		.replace('[a]', '')
+		.replace('[C]', '')
+		.replace('[a1]', '')
+		.replace('[a2]', '')
+		.replace('[a3]', '')
+		.replace('[a4]', '')
+		.replace('[b]', '')
+		.replace('[b1]', '')
+		.replace('[b2]', '')
+		.replace('[b3]', '')
+		.replace('[b4]', '')
+		.replace('[f]', '')
+		.replace('[f1]', '')
+		.replace('[f2]', '')
+		.replace('[f3]', '')
+		.replace('[h]', '')
+		.replace('[o]', '')
+		.replace('[o1]', '')
+		.replace('[o2]', '')
+		.replace('[o3]', '')
+		.replace('[p]', '')
+		.replace('[t]', '')
+		.replace('[!p]', '')
+
+	return output.trim()
+}
+
 function renderEntry(game) {
+	let name = cleanName(game.name)
 	return `
 game (
-	name "${game.name}"
-	description "${game.name}"
+	name "${name}"
+	description "${name}"
 	rom ( name "${game.filename}" size ${game.size} crc ${game.crc} md5 ${game.md5} sha1 ${game.sha1} )
 )
 `
