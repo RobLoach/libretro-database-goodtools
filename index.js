@@ -254,3 +254,18 @@ datfile.parseFile('libretro-database/metadat/goodtools/GoodPCE 1.09a.dat').then(
 }).catch(function(err) {
 	console.error(err)
 })
+
+datfile.parseFile('libretro-database/metadat/goodtools/GoodVBoy 3.1415.dat').then(function (dat) {
+	let entries = []
+	for (let activeEntry of dat) {
+		let trueName = activeEntry.name
+
+		if (activeEntry.entries) {
+			let entry = activeEntry.entries[0]
+			entry.filename = entry.name
+			entry.name = trueName
+			entries.push(entry)
+		}
+	}
+	writeDat(entries, 'Virtual Boy', 'Nintendo', '3.1415')
+})
