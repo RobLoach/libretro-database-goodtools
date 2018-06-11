@@ -4,7 +4,10 @@ Manages GoodTools in [libretro-database](https://github.com/libretro/libretro-da
 
 ## Features
 
-- Splits GoodWSx into two diffferent DATs
+Cleans up the following GoodTools:
+- GoodWSx
+- GoodN64
+- GoodPCE
 
 ## Usage
 

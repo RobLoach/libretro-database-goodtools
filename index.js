@@ -2,11 +2,14 @@ let datfile = require('robloach-datfile')
 let pkg = require('./package.json')
 let fs = require('fs')
 
-function renderHeader(name, vendor) {
+function renderHeader(name, vendor, version = null) {
+	if (version === null) {
+		version = pkg.version
+	}
 	return `clrmamepro (
 	name "${vendor} - ${name}"
 	description "${vendor} - ${name}"
-	version "${pkg.version}"
+	version "${version}"
 	homepage "${pkg.homepage}"
 )\n`
 }
@@ -179,8 +182,8 @@ game (
 `
 }
 
-function writeDat(entries, name, vendor) {
-	let output = renderHeader(name, vendor)
+function writeDat(entries, name, vendor, version) {
+	let output = renderHeader(name, vendor, version)
 	for (let entry of entries) {
 		output += renderEntry(entry)
 	}
@@ -206,8 +209,8 @@ datfile.parseFile('libretro-database/metadat/goodtools/GoodWSx 3.27.dat').then(f
 		}
 	}
 
-	writeDat(wonderswanEntries, 'WonderSwan', 'Bandai')
-	writeDat(wonderswanColorEntries, 'WonderSwan Color', 'Bandai')
+	writeDat(wonderswanEntries, 'WonderSwan', 'Bandai', '3.27')
+	writeDat(wonderswanColorEntries, 'WonderSwan Color', 'Bandai', '3.27')
 }).catch(function(err) {
 	console.error(err)
 })
@@ -224,5 +227,30 @@ datfile.parseFile('libretro-database/metadat/goodtools/GoodN64 3.27.dat').then(f
 			entries.push(entry)
 		}
 	}
-	writeDat(entries, 'Nintendo 64', 'Nintendo')
+	writeDat(entries, 'Nintendo 64', 'Nintendo', '3.27')
+})
+
+datfile.parseFile('libretro-database/metadat/goodtools/GoodPCE 1.09a.dat').then(function (dat) {
+	let turbografxEntries = []
+	let turbografxSuperGrafxEntries = []
+	for (let activeEntry of dat) {
+		let trueName = activeEntry.name
+
+		if (activeEntry.entries) {
+			let entry = activeEntry.entries[0]
+			entry.filename = entry.name
+			entry.name = trueName
+			if (entry.filename.includes('(SGX)')) {
+				turbografxSuperGrafxEntries.push(entry)
+			}
+			else {
+				turbografxEntries.push(entry)
+			}
+		}
+	}
+
+	writeDat(turbografxEntries, 'PC Engine - TurboGrafx 16', 'NEC', '1.09a')
+	writeDat(turbografxSuperGrafxEntries, 'PC Engine SuperGrafx', 'NEC', '1.09a')
+}).catch(function(err) {
+	console.error(err)
 })
