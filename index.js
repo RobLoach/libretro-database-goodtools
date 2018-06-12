@@ -129,6 +129,8 @@ function cleanName(title) {
 		// Custom tags
 		.replace(' [T-Rus]', '')
 		.replace(' (Kiosk Demo)', '')
+		.replace(' (Atari)', '')
+		.replace(' (CC2)', '')
 
 		// Country codes
 		.replace(' (E)', ' (Europe)')
@@ -190,6 +192,35 @@ function writeDat(entries, name, vendor, version) {
 	fs.writeFileSync('libretro-database/metadat/goodtools/' + vendor + ' - ' + name + '.dat', output)
 }
 
+function standardDatCleaner(inputFile, name, vendor, version) {
+	datfile.parseFile(inputFile).then(function (dat) {
+		let entries = []
+		for (let activeEntry of dat) {
+			let trueName = activeEntry.name
+
+			if (activeEntry.entries) {
+				let entry = activeEntry.entries[0]
+				entry.filename = entry.name
+				entry.name = trueName
+				entries.push(entry)
+			}
+		}
+		writeDat(entries, name, vendor, version)
+	}).catch(function(err) {
+		console.error(err)
+	})
+}
+
+
+standardDatCleaner('libretro-database/metadat/goodtools/GoodN64 3.27.dat', 'Nintendo 64', 'Nintendo', '3.27')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodVBoy 3.1415.dat', 'Virtual Boy', 'Nintendo', '3.1415')
+standardDatCleaner('libretro-database/metadat/goodtools/Good2600 3.14.dat', '2600', 'Atari', '3.14')
+standardDatCleaner('libretro-database/metadat/goodtools/Good5200 2.01.dat', '5200', 'Atari', '2.01')
+standardDatCleaner('libretro-database/metadat/goodtools/Good7800 3.28.dat', '7800', 'Atari', '3.28')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodLynx 2.01.dat', 'Lynx', 'Atari', '2.01')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodJag 2.01.dat', 'Jaguar', 'Atari', '2.01')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodCol 3.14.dat', 'ColecoVision', 'Coleco', '3.14')
+
 datfile.parseFile('libretro-database/metadat/goodtools/GoodWSx 3.27.dat').then(function (dat) {
 	let wonderswanEntries = []
 	let wonderswanColorEntries = []
@@ -215,21 +246,6 @@ datfile.parseFile('libretro-database/metadat/goodtools/GoodWSx 3.27.dat').then(f
 	console.error(err)
 })
 
-datfile.parseFile('libretro-database/metadat/goodtools/GoodN64 3.27.dat').then(function (dat) {
-	let entries = []
-	for (let activeEntry of dat) {
-		let trueName = activeEntry.name
-
-		if (activeEntry.entries) {
-			let entry = activeEntry.entries[0]
-			entry.filename = entry.name
-			entry.name = trueName
-			entries.push(entry)
-		}
-	}
-	writeDat(entries, 'Nintendo 64', 'Nintendo', '3.27')
-})
-
 datfile.parseFile('libretro-database/metadat/goodtools/GoodPCE 1.09a.dat').then(function (dat) {
 	let turbografxEntries = []
 	let turbografxSuperGrafxEntries = []
@@ -253,19 +269,4 @@ datfile.parseFile('libretro-database/metadat/goodtools/GoodPCE 1.09a.dat').then(
 	writeDat(turbografxSuperGrafxEntries, 'PC Engine SuperGrafx', 'NEC', '1.09a')
 }).catch(function(err) {
 	console.error(err)
-})
-
-datfile.parseFile('libretro-database/metadat/goodtools/GoodVBoy 3.1415.dat').then(function (dat) {
-	let entries = []
-	for (let activeEntry of dat) {
-		let trueName = activeEntry.name
-
-		if (activeEntry.entries) {
-			let entry = activeEntry.entries[0]
-			entry.filename = entry.name
-			entry.name = trueName
-			entries.push(entry)
-		}
-	}
-	writeDat(entries, 'Virtual Boy', 'Nintendo', '3.1415')
 })
