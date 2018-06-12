@@ -131,6 +131,8 @@ function cleanName(title) {
 		.replace(' (Kiosk Demo)', '')
 		.replace(' (Atari)', '')
 		.replace(' (CC2)', '')
+		.replace(' (SGX)', '')
+		.replace(' (no SGX)', '')
 
 		// Country codes
 		.replace(' (E)', ' (Europe)')
