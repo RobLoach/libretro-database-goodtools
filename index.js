@@ -166,6 +166,7 @@ function cleanName(title) {
 		.replace(' (SGX)', '')
 		.replace(' (no SGX)', '')
 		.replace(' (Hardware Compatible)', '')
+		.replace(' (Z64)', '')
 
 		// Country codes
 		.replace(' (E)', ' (Europe)')
