@@ -247,15 +247,25 @@ function standardDatCleaner(inputFile, name, vendor, version) {
 	})
 }
 
-
-standardDatCleaner('libretro-database/metadat/goodtools/GoodN64 3.27.dat', 'Nintendo 64', 'Nintendo', '3.27')
-standardDatCleaner('libretro-database/metadat/goodtools/GoodVBoy 3.1415.dat', 'Virtual Boy', 'Nintendo', '3.1415')
 standardDatCleaner('libretro-database/metadat/goodtools/Good2600 3.14.dat', '2600', 'Atari', '3.14')
 standardDatCleaner('libretro-database/metadat/goodtools/Good5200 2.01.dat', '5200', 'Atari', '2.01')
 standardDatCleaner('libretro-database/metadat/goodtools/Good7800 3.28.dat', '7800', 'Atari', '3.28')
-standardDatCleaner('libretro-database/metadat/goodtools/GoodLynx 2.01.dat', 'Lynx', 'Atari', '2.01')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodJag 2.01.dat', 'Jaguar', 'Atari', '2.01')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodLynx 2.01.dat', 'Lynx', 'Atari', '2.01')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodCol 3.14.dat', 'ColecoVision', 'Coleco', '3.14')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodGG 3.20.dat', 'Game Gear', 'Sega', '3.20')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodSMS 3.20.dat', 'Master System - Mark III', 'Sega', '3.20')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodPico 3.15.dat', 'PICO', 'Sega', '3.15')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodGen 3.21.dat', 'Mega Drive - Genesis', 'Sega', '3.21')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodNGPx 3.27.dat', 'Neo Geo Pocket Color', 'SNK', '3.27')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodN64 3.27.dat', 'Nintendo 64', 'Nintendo', '3.27')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodVBoy 3.1415.dat', 'Virtual Boy', 'Nintendo', '3.1415')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodSNES 3.27.dat', 'Super Nintendo Entertainment System', 'Nintendo', '3.27')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodNES 3.23b.dat', 'Nintendo Entertainment System', 'Nintendo', '3.23b')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodVect 1.06.dat', 'Vectrex', 'GCE', '1.06')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodMSX1 0.999.3.dat', 'MSX', 'Microsoft', '0.999.3')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodMSX2 0.999.3.dat', 'MSX2', 'Microsoft', '0.999.3')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodGB64 3.00.dat', '64', 'Commodore', '3.00')
 
 datfile.parseFile('libretro-database/metadat/goodtools/GoodWSx 3.27.dat').then(function (dat) {
 	let wonderswanEntries = []
