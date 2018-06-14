@@ -256,7 +256,7 @@ standardDatCleaner('libretro-database/metadat/goodtools/GoodCol 3.14.dat', 'Cole
 standardDatCleaner('libretro-database/metadat/goodtools/GoodGG 3.20.dat', 'Game Gear', 'Sega', '3.20')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodSMS 3.20.dat', 'Master System - Mark III', 'Sega', '3.20')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodPico 3.15.dat', 'PICO', 'Sega', '3.15')
-standardDatCleaner('libretro-database/metadat/goodtools/GoodGen 3.21.dat', 'Mega Drive - Genesis', 'Sega', '3.21')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodGen 3.21.dat', '32x', 'Sega', '3.21')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodNGPx 3.27.dat', 'Neo Geo Pocket Color', 'SNK', '3.27')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodN64 3.27.dat', 'Nintendo 64', 'Nintendo', '3.27')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodVBoy 3.1415.dat', 'Virtual Boy', 'Nintendo', '3.1415')
@@ -266,6 +266,7 @@ standardDatCleaner('libretro-database/metadat/goodtools/GoodVect 1.06.dat', 'Vec
 standardDatCleaner('libretro-database/metadat/goodtools/GoodMSX1 0.999.3.dat', 'MSX', 'Microsoft', '0.999.3')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodMSX2 0.999.3.dat', 'MSX2', 'Microsoft', '0.999.3')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodGB64 3.00.dat', '64', 'Commodore', '3.00')
+standardDatCleaner('libretro-database/metadat/goodtools/GoodSV 3.27.dat', 'Supervision', 'Watara', '3.27')
 
 datfile.parseFile('libretro-database/metadat/goodtools/GoodWSx 3.27.dat').then(function (dat) {
 	let wonderswanEntries = []
