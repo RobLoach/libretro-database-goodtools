@@ -256,7 +256,6 @@ standardDatCleaner('libretro-database/metadat/goodtools/GoodCol 3.14.dat', 'Cole
 standardDatCleaner('libretro-database/metadat/goodtools/GoodGG 3.20.dat', 'Game Gear', 'Sega', '3.20')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodSMS 3.20.dat', 'Master System - Mark III', 'Sega', '3.20')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodPico 3.15.dat', 'PICO', 'Sega', '3.15')
-standardDatCleaner('libretro-database/metadat/goodtools/GoodGen 3.21.dat', '32x', 'Sega', '3.21')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodNGPx 3.27.dat', 'Neo Geo Pocket Color', 'SNK', '3.27')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodN64 3.27.dat', 'Nintendo 64', 'Nintendo', '3.27')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodVBoy 3.1415.dat', 'Virtual Boy', 'Nintendo', '3.1415')
@@ -314,6 +313,32 @@ datfile.parseFile('libretro-database/metadat/goodtools/GoodPCE 1.09a.dat').then(
 
 	writeDat(turbografxEntries, 'PC Engine - TurboGrafx 16', 'NEC', '1.09a')
 	writeDat(turbografxSuperGrafxEntries, 'PC Engine SuperGrafx', 'NEC', '1.09a')
+}).catch(function(err) {
+	console.error(err)
+})
+
+
+datfile.parseFile('libretro-database/metadat/goodtools/GoodGen 3.21.dat').then(function (dat) {
+	let genEntries = []
+	let gen32xEntries = []
+	for (let activeEntry of dat) {
+		let trueName = activeEntry.name
+
+		if (activeEntry.entries) {
+			let entry = activeEntry.entries[0]
+			entry.filename = entry.name
+			entry.name = trueName
+			if (entry.filename.includes('.32x')) {
+				gen32xEntries.push(entry)
+			}
+			else {
+				genEntries.push(entry)
+			}
+		}
+	}
+
+	writeDat(gen32xEntries, '32X', 'Sega', '3.21')
+	writeDat(genEntries, 'Mega Drive - Genesis', 'Sega', '3.21')
 }).catch(function(err) {
 	console.error(err)
 })
