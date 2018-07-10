@@ -190,6 +190,7 @@ function cleanName(title) {
 		.replace(' (Sw)', ' (Sweden)')
 		.replace(' (UK)', ' (United Kingdom)')
 		.replace(' (JU)', ' (Japan, USA)')
+		.replace(' (JE)', ' (Japan, Europe)')
 		.replace(' (UE)', ' (USA, Europe)')
 		.replace(' (JUE)', ' (Japan, USA, Europe)')
 		.replace(' (Unk)', '')
@@ -205,6 +206,13 @@ function cleanName(title) {
 		.replace(' (REVSC02)', '')
 		.replace(' (REVSC03)', '')
 		.replace(' (REVSC04)', '')
+		.replace(' (REV00)', '')
+		.replace(' (REV01)', '')
+		.replace(' (REV02)', '')
+		.replace(' (REV03)', '')
+		.replace(' (REV04)', '')
+		.replace(' (REV05)', '')
+		.replace(' (REV06)', '')
 
 	return output.trim()
 }
