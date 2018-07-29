@@ -90,6 +90,8 @@ function cleanName(title) {
 		.replace('[h8C]', '')
 		.replace('[h9C]', '')
 		.replace('[h10C]', '')
+		.replace('[h0e]', '')
+		.replace('[h13]', '')
 		.replace('[o]', '')
 		.replace('[o1]', '')
 		.replace('[o2]', '')
@@ -146,13 +148,20 @@ function cleanName(title) {
 
 		// GoodGen
 		.replace(' (1)', '')
+		.replace(' (2)', '')
+		.replace(' (3)', '')
 		.replace(' (4)', '')
 		.replace(' (5)', '')
+		.replace(' (6)', '')
+		.replace(' (7)', '')
 		.replace(' (8)', '')
-		.replace(' (1)', '')
-		.replace(' (1)', '')
-		.replace(' (1)', '')
-		.replace(' (1)', '')
+		.replace(' (9)', '')
+
+		// GoodSNES
+		.replace(' (BS)', '')
+		.replace(' (ST)', '')
+		.replace(' (NP)', '')
+		.replace(' (NSS)', '')
 
 		// Public domain
 		.replace(' (PD)', '')
@@ -167,6 +176,31 @@ function cleanName(title) {
 		.replace(' (no SGX)', '')
 		.replace(' (Hardware Compatible)', '')
 		.replace(' (Z64)', '')
+		.replace(' (VC)', ' (Virtual Console)')
+		.replace(' (V1.0)', ' (v1.0)')
+		.replace(' (V1.1)', ' (v1.1)')
+		.replace(' (V1.2)', ' (v1.2)')
+		.replace(' (V1.3)', ' (v1.3)')
+		.replace(' (V1.4)', ' (v1.4)')
+		.replace(' (V1.5)', ' (v1.5)')
+		.replace(' (V1.6)', ' (v1.6)')
+		.replace(' (V1.7)', ' (v1.7)')
+		.replace(' (V1.8)', ' (v1.8)')
+		.replace(' (V1.9)', ' (v1.9)')
+		.replace(' (V2.0)', ' (v2.0)')
+		.replace(' (V2.1)', ' (v2.1)')
+		.replace(' (V2.2)', ' (v2.2)')
+		.replace(' (V2.3)', ' (v2.3)')
+		.replace(' (V2.4)', ' (v2.4)')
+		.replace(' (V2.5)', ' (v2.5)')
+		.replace(' (V2.6)', ' (v2.6)')
+		.replace(' (V2.7)', ' (v2.7)')
+		.replace(' (V2.8)', ' (v2.8)')
+		.replace(' (V2.9)', ' (v2.9)')
+		.replace(' (V3.0)', ' (v3.0)')
+		.replace(' (V3.1)', ' (v3.1)')
+		.replace(' (V3.2)', ' (v3.2)')
+		.replace(' (V3.3)', ' (v3.3)')
 
 		// Country codes
 		.replace(' (E)', ' (Europe)')
@@ -267,13 +301,42 @@ standardDatCleaner('libretro-database/metadat/goodtools/GoodPico 3.15.dat', 'PIC
 standardDatCleaner('libretro-database/metadat/goodtools/GoodNGPx 3.27.dat', 'Neo Geo Pocket Color', 'SNK', '3.27')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodN64 3.27.dat', 'Nintendo 64', 'Nintendo', '3.27')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodVBoy 3.1415.dat', 'Virtual Boy', 'Nintendo', '3.1415')
-standardDatCleaner('libretro-database/metadat/goodtools/GoodSNES 3.27.dat', 'Super Nintendo Entertainment System', 'Nintendo', '3.27')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodNES 3.23b.dat', 'Nintendo Entertainment System', 'Nintendo', '3.23b')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodVect 1.06.dat', 'Vectrex', 'GCE', '1.06')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodMSX1 0.999.3.dat', 'MSX', 'Microsoft', '0.999.3')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodMSX2 0.999.3.dat', 'MSX2', 'Microsoft', '0.999.3')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodGB64 3.00.dat', '64', 'Commodore', '3.00')
 standardDatCleaner('libretro-database/metadat/goodtools/GoodSV 3.27.dat', 'Supervision', 'Watara', '3.27')
+
+datfile.parseFile('libretro-database/metadat/goodtools/GoodSNES 3.27.dat').then(function (dat) {
+	let snesEntries = []
+	let satellaviewEntries = []
+	let sufamiEntries = []
+	for (let activeEntry of dat) {
+		let trueName = activeEntry.name
+
+		if (activeEntry.entries) {
+			let entry = activeEntry.entries[0]
+			entry.filename = entry.name
+			entry.name = trueName
+			if (entry.name.includes(' (BS)')) {
+				satellaviewEntries.push(entry)
+			}
+			else if (entry.name.includes(' (ST)')) {
+				sufamiEntries.push(entry)
+			}
+			else {
+				snesEntries.push(entry)
+			}
+		}
+	}
+
+	writeDat(snesEntries, 'Super Nintendo Entertainment System', 'Nintendo', '3.27')
+	writeDat(satellaviewEntries, 'Satellaview', 'Nintendo', '3.27')
+	writeDat(sufamiEntries, 'Sufami Turbo', 'Nintendo', '3.27')
+}).catch(function(err) {
+	console.error(err)
+})
 
 datfile.parseFile('libretro-database/metadat/goodtools/GoodWSx 3.27.dat').then(function (dat) {
 	let wonderswanEntries = []
