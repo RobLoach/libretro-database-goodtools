@@ -15,6 +15,9 @@ function renderHeader(name, vendor, version = null) {
 }
 
 function cleanName(title) {
+	if (title.includes(" BIOS ")) {
+		return ''
+	}
 	let output = title.trim()
 
 	// Remove GoodTools flags
@@ -253,19 +256,25 @@ function cleanName(title) {
 
 function renderEntry(game) {
 	let name = cleanName(game.name)
-	return `
+	if (name) {
+		return `
 game (
 	name "${name}"
 	description "${name}"
 	rom ( name "${game.filename}" size ${game.size} crc ${game.crc} md5 ${game.md5} sha1 ${game.sha1} )
 )
 `
+	}
+	return ''
 }
 
 function writeDat(entries, name, vendor, version) {
 	let output = renderHeader(name, vendor, version)
 	for (let entry of entries) {
-		output += renderEntry(entry)
+		let rendered = renderEntry(entry)
+		if (rendered) {
+			output += renderEntry(entry)
+		}
 	}
 	fs.writeFileSync('libretro-database/metadat/goodtools/' + vendor + ' - ' + name + '.dat', output)
 }
