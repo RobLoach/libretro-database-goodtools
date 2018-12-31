@@ -15,7 +15,8 @@ function renderHeader(name, vendor, version = null) {
 }
 
 function cleanName(title) {
-	if (title.includes(" BIOS ")) {
+	// Ignore any BIOS or boot sector images.
+	if (title.includes(" BIOS ") || title.includes(" Boot Sector ")) {
 		return ''
 	}
 	let output = title.trim()
