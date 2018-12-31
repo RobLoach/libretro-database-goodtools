@@ -250,6 +250,13 @@ function cleanName(title) {
 		.replace(' (REV04)', '')
 		.replace(' (REV05)', '')
 		.replace(' (REV06)', '')
+	
+		// Whitespace
+		.replace('  ', ' ')
+		.replace('  ', ' ')
+		.replace('  ', ' ')
+		.replace('  ', ' ')
+		.replace('  ', ' ')
 
 	return output.trim()
 }
