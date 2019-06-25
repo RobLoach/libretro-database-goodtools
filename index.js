@@ -2,6 +2,9 @@ let datfile = require('robloach-datfile')
 let pkg = require('./package.json')
 let fs = require('fs')
 
+console.log('GoodTools is disabled for now.')
+return
+
 function renderHeader(name, vendor, version = null) {
 	if (version === null) {
 		version = pkg.version
